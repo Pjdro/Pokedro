@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Pokedro
+{% endblock %}
+
+{% block main %}
+    <h1>Pokemon Pokedex</h1>
+
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+    <div class="search">
+        <form method="POST" action="/pokemon">
+            <input type="text" autofocus name="pokemon_name" style="width: 600px;" placeholder="Enter a Pokemon name or number i.e. Pikachu or 625">
+            <button class="button btn1" type="submit">Search</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="left" >
+            <h2>Welcome!</h2>
+
+            <br>
+            <br>
+            <p>Here is our current Leaderboards for the trivia game:</p>
+            
+                <table class="table">
+                    <thead class="thead">
+                        <tr>
+                            <th>Username</th>
+                            <th>Longest Streak</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for each in scoreboard %}
+                        <tr>
+                            <td>{{ each.username }}</td>
+                            <td>{{ each.longest_streak }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                {% if not session["user_id"] %}
+                <p>Remember you need to <a href="/register" class="link" >register</a> in order to play the Trivia or store your favorite Pokemon</p>
+                {% endif %}
+        </div>
+
+        <div class="right-image">
+            <h2>Now featuring:</h2>
+            <img src="{{ index_image }}">
+            <h3> Pokemon #{{ index_pkmn['id'] }} {{ index_pkmn['name'].capitalize() }}</h3>
+        </div>
+    </div>  
+{% endblock %}

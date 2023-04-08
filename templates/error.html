@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+
+{% block main %}
+
+
+{% if error_message %}
+<p class="error">{{ error_message }}</p>
+{% endif %}
+
+<br>
+<br>
+
+<div class="ctr">
+
+    <img src="/static/togepi.jpg" style="width: 400px; height: 350px;">
+    <br>
+    <br>
+    <p>Remember to spell the Pokemon name correctly or enter a number between 1 and 1008 to get your result</p>
+    <a href="/" class="link" >Go back to main page</a>
+
+</div>
+
+{% endblock %}

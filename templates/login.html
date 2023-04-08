@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+
+{% block main %}
+{% if error_message %}
+<p class="error">{{ error_message }}</p>
+{% endif %}
+<div>
+    <h1>Login using your existing account</h1>
+    <br>
+    <p>Nice to have you back!</p>
+    <br>
+</div>
+<div class="ctr">
+    <form action="/login" method="post">
+        <p>Enter your username:
+            <br>
+        <input type="text" autocomplete="off" placeholder="Enter username" name="username" id="username" autofocus>
+        </p>
+        <br>
+        <p>Enter your password:
+            <br>
+        <input type="password" placeholder="Enter password" name="password" id="password">
+        </p>
+        <br>
+        <button class="button btn1" type="submit"> Login</button>
+    </form>
+</div>
+{% endblock %}

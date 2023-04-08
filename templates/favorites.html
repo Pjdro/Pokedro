@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Favorites
+{% endblock %}
+
+{% block main %}
+{% if error_message %}
+<p class="error">{{ error_message }}</p>
+{% endif %}
+        <h1>Your favorites</h1>
+        <br>
+        <br>
+        <div class="ctr">
+            <table>
+                <thead class="thead" >
+                    <tr>
+                        <th>Favorites</th>
+
+                    </tr>
+                </thead>
+                <tbody> 
+                    {% for name, url in list.items() %}
+                    <tr class="favorites">
+                        <td>
+                            <div class="chart">
+                                <a href="#">
+                                    <div><a href="#"><img src="{{ url }}" width="200px" height="200px"></div>
+                                    <div>{{ name.capitalize() }}</div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}

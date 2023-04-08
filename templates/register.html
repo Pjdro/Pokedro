@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+
+{% block main %}
+{% if error_message %}
+<p class="error">{{ error_message }}</p>
+{% endif %}
+<div>
+    <h1>Register for an account</h1>
+    <br>
+    <p>Once you create an account, you will be able to play store your favorite Pokemon and share them with your friends</p>
+    <br>
+</div>
+<br>
+<div class="ctr">
+    <form action="/register" method="post">
+        <p>Enter a username:
+        <input type="text" autocomplete="off" placeholder="Enter username" name="username" id="username" autofocus>
+        </p>
+        <br>
+        <p>Enter a password:
+        <input type="password" placeholder="Enter password" name="password" id="password">
+        </p>
+        <br>
+        <p>Confirm your password:
+        <input type="password"  placeholder="Confirm password" name="confirmation" id="confirmation">
+        </p>
+        <br>
+        <button class="button btn1" type="submit" > Register me!</button>
+    </form>
+</div>
+{% endblock %}

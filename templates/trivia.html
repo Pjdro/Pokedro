@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Trivia
+{% endblock %}
+
+
+{% block main %}
+{% if error_message %}
+<p class="error">{{ error_message }}</p>
+{% endif %}
+
+<div>
+    <h1>Trivia</h1>
+    <p>Try your knowledge on this fun game where you try to guess the name of the Pokemon shown</p>
+    <p>No pressure, but we keep your records!</p>
+    <p>Your current streak is: {{ counter }} and your longest streak is: {{ streak }} </p>
+</div>
+<br>
+<br>
+<br>
+<div>
+    <form id="trivia-form" action="/trivia" method="post">
+        <h2>Can you guess the name of this Pokemon?</h2>
+        <img src="{{ index_pkmn['sprites']['other']['official-artwork']['front_default'] }}">
+        <input type="hidden" id="trivia" value="{{ crypted }}" name="result">
+        <input type="text" autocomplete="off" autofocus id="trivia" name="trivia" style="width: 500px;" placeholder="What's my name?">
+        <button class="button btn1" type="submit">Submit</button>
+    </form>
+    <p>You have <span id="timer">10</span> seconds left to submit your answer!</p>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        // Set the number of seconds for the timer
+        var timeleft = 10;
+
+        // Set an interval function to decrease the time left by 1 second
+        var countdown = setInterval(function(){
+            timeleft--;
+            document.getElementById("timer").textContent = timeleft;
+            // If time runs out, submit the form
+            if (timeleft <= 0){
+                clearInterval(countdown);
+                document.getElementById("trivia-form").submit();
+            }
+        }, 1000);
+    </script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Trivia result
+{% endblock %}
+
+
+{% block main %}
+
+
+<div>
+{% if message=="correct" %}
+<h2>Great!</h2>
+<img src="/static/squirtle.gif">
+{% else %}
+<h2>Wrong answer, sorry</h2>
+<img src="/static/confusedslow.gif" style="width: 400px; height: 350px;">
+{% endif %}
+</div>
+
+<br>
+<br>
+
+<div class="ctr">
+
+    <a href="/trivia" class="link" >Back to Trivia</a>
+
+</div>
+
+{% endblock %}

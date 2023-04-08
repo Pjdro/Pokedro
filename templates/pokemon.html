@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Pokemon
+{% endblock %}
+
+{% if error_message %}
+<p class="error">{{ error_message }}</p>
+{% endif %}
+
+{% block main %}
+        <h1>{{ pokemon['name'].capitalize() }}</h1>
+        <img src="{{ pokemon['sprites']['other']['official-artwork']['front_default'] }}" alt="{{ pokemon['name'] }} image">
+        <div>
+            <form action="/favorites" method="post">
+            <input type="hidden" id="favorites" name="pokemon_name" value="{{ pokemon['name'] }}"><p>Pokemon # {{ pokemon['id'] }} </p>
+            <p> From Generation {{  gen }} </p>
+            <div>
+                {% if pokemon['types'][1]: %}
+                    <p>Type: {{ pokemon['types'][0]['type']['name'].capitalize() }} / {{ pokemon['types'][1]['type']['name'].capitalize() }}</p>
+                {% else: %}
+                    <p>Type: {{ pokemon['types'][0]['type']['name'].capitalize() }}</p>
+                {% endif %}
+            </div>
+            {% if session["user_id"] %}
+                <input type="submit" value="Add Favorite" >
+            {% endif %}
+            </form>
+            <br>
+            {% if generation['evolves_from_species']['name']: %}
+                    <p> Evolves from: {{  generation['evolves_from_species']['name'].capitalize() }}  </p>
+                    <img src="{{ prev_form['sprites']['other']['official-artwork']['front_default'] }}" width="200px" heigh="200px" alt="{{ prev_form['name'] }} image">
+            {% endif %}
+        </div>
+{% endblock %}
